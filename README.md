@@ -1,51 +1,135 @@
-# Jekyll Theme - Mundana by WowThemes.net
+![Jekyll Version](https://img.shields.io/badge/Jekyll-3.1.2-red.svg)
+![Build Status](https://gitlab.com/jekyll-themes/default-bundler/badges/master/build.svg)
 
-[Live Demo](https://wowthemesnet.github.io/mundana-theme-jekyll/) &nbsp; | &nbsp; 
-[Download](https://github.com/wowthemesnet/mundana-theme-jekyll/archive/master.zip) &nbsp; | &nbsp; 
-[Buy me a coffe](https://www.wowthemes.net/donate/) &nbsp; | &nbsp; [Documentation](https://bootstrapstarter.com/bootstrap-templates/mundana-theme-jekyll/) &nbsp; | &nbsp; 
-[WordPress version](https://www.wowthemes.net/themes/mundana-wordpress/) 
+----
 
-![mundana jekyll theme screenshot](assets/images/screenshot.jpg)
+View Demo: https://lorepirri.gitlab.io/jekyll-theme-simple-blog/
 
-### Documentation
+-----
+# Simple Blog Theme
 
-[How to install & use](https://bootstrapstarter.com/bootstrap-templates/mundana-theme-jekyll/)
+*Simple Blog is a Jekyll theme for Gitlab or GitHub Pages. It is based on [Cayman Blog Theme](https://github.com/lorepirri/cayman-blog). You can [preview the theme to see what it looks like](https://lorepirri.gitlab.io/jekyll-theme-simple-blog/), or even [use it today](#install).*
 
-### Contribute to Mundana repository
+<img src="https://gitlab.com/lorepirri/jekyll-theme-simple-blog/raw/master/simple-blog-theme.png" alt="Thumbnail of jekyll-theme-simple-blog" style="max-width:30%; border: 1px solid grey;"/>
 
-1. In the top-right corner of this page, click **Fork**.
+## Features
 
-2. Clone a copy of your fork on your local, replacing *YOUR-USERNAME* with your Github username.
+- Blog
+- Responsive
+- Minimal
+- Multi-language
+- SEO optimized
+- Social buttons (instagram, linkedin, twitter, github, gitlab)
+- RSS feed multi-language
 
-   `git clone https://github.com/YOUR-USERNAME/mundana-theme-jekyll.git`
+## Install
 
-3. **Create a branch**: 
+Simple Blog Theme is 100% compatible with GitLab and GitHub Pages.
 
-   `git checkout -b <my-new-feature-or-fix>`
+### Install as a Fork
 
-4. **Make necessary changes and commit those changes**:
+1. [Fork the repo](https://gitlab.com/lorepirri/jekyll-theme-simple-blog)
+2. Clone down the repo with one of the two:
+    * ssh `$ git clone git@gitlab.com:your-username/jekyll-theme-simple-blog.git`
+    * https: `$ git clone https://gitlab.com/lorepirri/jekyll-theme-simple-blog.git`
+3. Empty the `_posts/` folder
+4. Install bundler and gems with `$ script/bootstrap`
+5. Run Jekyll with `$ script/server`
+6. Modify `_config.yml`, `about-en.md`, `contact-en.md`, and the other pages for your project
+6. Write your posts in `_posts/en` and `_posts/<other-language>`
+7. [Customize the theme](customizing)
 
-   `git add .`
+### SEO tags
 
-   `git commit -m "new feature or fix"`
+Simple Blog includes simple SEO tags from [jekyll-social-metatags](https://github.com/lorepirri/jekyll-social-metatags). Have a look at the page for its usage.
 
-5. **Push changes**, replacing `<add-your-branch-name>` with the name of the branch you created earlier at step #3. :
+The usage is compatible with the plugin [Jekyll SEO Tag](https://github.com/jekyll/jekyll-seo-tag), which provides a battle-tested template of crowdsourced best-practices.
 
-   `git push origin <add-your-branch-name>`
+To switch to a better SEO tags however, one should install [Jekyll Feed plugin](https://github.com/jekyll/jekyll-feed):
 
-6. Submit your changes for review. Go to your repository on GitHub, you'll see a **Compare & pull request** button. Click on that button. Now submit the pull request.
+1. Add this line to your site's Gemfile:
 
-That's it! Soon I'll be merging your changes into the master branch of this project. You will get a notification email once the changes have been merged. Thank you for your contribution.
+    ```ruby
+    gem 'jekyll-seo-tag'
+    ```
+
+2. And then add this line to your site's `_config.yml`:
+
+    ```yml
+    gems:
+      - jekyll-seo-tag
+    ```
+
+3. Replace with the following, the `<!-- jekyll-seo-tag -->` comment in your site's `default.html`:
+
+      ```liquid
+      {% seo %}
+      ```
+
+For more information about configuring this plugin, see the official [Jekyll SEO Tag](https://github.com/jekyll/jekyll-seo-tag) page.
 
 
-### Copyright
+### Stylesheet
 
-Copyright (C) 2019 WowThemes.net.
+If you'd like to add your own custom styles:
 
-Theme designed and developed by [Sal](https://www.wowthemes.net), *free* under MIT license. 
+1. Create a file called `/assets/css/style.scss` in your site
+2. Add the following content to the top of the file, exactly as shown:
+    ```scss
+    ---
+    ---
 
-<a href="https://www.wowthemes.net/donate/" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+    @import "{{ site.theme }}";
+    ```
+3. Add any custom CSS (or Sass, including imports) you'd like immediately after the `@import` line
 
-### Live Demo
+### Layouts
 
-[Live Demo](https://wowthemesnet.github.io/mundana-theme-jekyll/)
+If you'd like to change the theme's HTML layout:
+
+1. [Copy the original template](https://gitlab.com/lorepirri/jekyll-theme-simple-blog/blob/master/_layouts/default.html) from the theme's repository<br />(*Pro-tip: click "raw" to make copying easier*)
+2. Create a file called `/_layouts/default.html` in your site
+3. Paste the default layout content copied in the first step
+4. Customize the layout as you'd like
+
+### Sass variables
+
+If you'd like to change the theme's [Sass variables](https://gitlab.com/lorepirri/jekyll-theme-simple-blog/blob/master/_sass/variables.scss), set new values before the `@import` line in your stylesheet:
+
+```scss
+$section-headings-color: #0086b3;
+
+@import "{{ site.theme }}";
+```
+
+## Roadmap
+
+See the [open issues](https://gitlab.com/lorepirri/jekyll-theme-simple-blog/issues) for a list of proposed features (and known issues).
+
+## Project philosophy
+
+The Simple Blog Theme is intended to make it quick and easy for Gitlab or GitHub Pages users to create their first (or 100th) website. The theme should meet the vast majority of users' needs out of the box, erring on the side of simplicity rather than flexibility, and provide users the opportunity to opt-in to additional complexity if they have specific needs or wish to further customize their experience (such as adding custom CSS or modifying the default layout). It should also look great, but that goes without saying.
+
+## Contributing
+
+Interested in contributing to Simple Blog? We'd love your help. Simple Blog is an open source project, built one contribution at a time by users like you. See [the CONTRIBUTING file](CONTRIBUTING.md) for instructions on how to contribute.
+
+### Previewing the theme locally
+
+If you'd like to preview the theme locally (for example, in the process of proposing a change):
+
+1. Clone down the theme's repository (`git clone https://gitlab.com/lorepirri/jekyll-theme-simple-blog`)
+2. `cd` into the theme's directory
+3. Run `script/bootstrap` to install the necessary dependencies
+4. Run `script/server` to start the preview server
+5. Visit [`localhost:4000`](http://localhost:4000) in your browser to preview the theme
+
+
+[`.gitlab-ci.yml`]: https://gitlab.com/jekyll-themes/default-bundler/blob/master/.gitlab-ci.yml
+[`Gemfile`]: https://gitlab.com/jekyll-themes/default-bundler/blob/master/Gemfile
+[`.gitignore`]: https://gitlab.com/jekyll-themes/default-bundler/blob/master/.gitignore
+[`_config.yml`]: https://gitlab.com/jekyll-themes/default-bundler/blob/master/_config.yml
+
+[Bundler]: http://bundler.io/
+[Jekyll]: http://jekyllrb.com/
+[jek-312]: https://rubygems.org/gems/jekyll/versions/3.1.2

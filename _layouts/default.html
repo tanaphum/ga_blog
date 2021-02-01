@@ -1,98 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+{% assign page-lang = page.lang | default: site.lang | default: "en" %}
+<html lang="{{ page-lang }}">
+
+  <head>
+    {% if page-lang == "en" %}
+      {% assign page-lang-country = "en_US" %}
+    {% elsif page-lang == "it" %}
+      {% assign page-lang-country = "it_IT" %}
+    {% endif %}
+
+    {% include language-meta-link.html %}
+
+    <!-- Non social metatags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{page.title}} | {{site.name}}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="theme-color" content="#157878">
 
-    {% seo %}
+    {% include page-title.html %}
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{site.baseurl}}/{{site.favicon}}">
+    <title>{{ page_title }}</title>
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    {% if page.title %}
+      {% assign header_title = page.title | escape %}
+    {% else %}
+      {% assign header_title = site.title | escape %}
+    {% endif %}
 
-    <!-- Google Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700" rel="stylesheet">
+    {% if site.gems contains "jekyll-seo-tag" %}
+      <!-- jekyll-seo-tag -->
+    {% else %}
+      {% include social-metatags.html %}
+    {% endif %}
 
-    <!-- Bootstrap Modified -->
-    <link rel="stylesheet" href="{{site.baseurl}}/assets/css/main.css">
+    {% assign canonical_url = page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url %}
 
-    <!-- Theme Stylesheet -->
-    <link rel="stylesheet" href="{{site.baseurl}}/assets/css/theme.css">
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
-    <!-- Jquery on header to make sure everything works, the rest  of the scripts in footer for fast loading -->
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ '/feed-' | prepend: site.baseurl | prepend: site.url | append: page.lang | append: '.xml' }}">
 
-    {% include tracking-header.html %}
+    <link rel="shortcut icon" href="{{ '/favicon.ico' | prepend: site.baseurl }}">
+    <meta name="robots" content="noarchive">
+
+    <!-- <link rel="alternate" media="only screen and (max-width: 640px)" href="">
+    <link rel="alternate" media="handheld" href=""> -->
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | prepend: site.baseurl }}">
+
+  </head>
+  <body>
+
+    {% include site-header.html %}
+
+    {% if page.layout == 'home' %}
+      {% assign page-tagline = page.tagline | default: site.description | escape %}
+      {% assign header-padding = "80px" %}
+      {% assign header-padding-bottom = "40px" %}
+    {% else %}
+      {% assign header-padding = "40px" %}
+      {% assign header-padding-bottom = "20px" %}
+    {% endif %}
+
+    {% if page.layout == 'page' or page.layout == 'category' %}
+      {% assign page-tagline = page.tagline | escape %}
+    {% endif %}
+
+    {% if page.layout == 'post' %}
+      {% assign page-tagline = page.tagline | default: page.repository.project_tagline | escape  %}
+    {% endif %}
+
+    <section class="page-header" style="padding-top: {{ header-padding }}; padding-bottom: {{ header-padding-bottom }}; background: linear-gradient(0deg,rgba(0,0,0,0.2),rgba(0,0,0,0.0)), url('{{ site.baseurl }}{{ page.header.image | default: site.header.image }}') center center repeat;">
+      <h1 class="project-name">{{ header_title }}</h1>
+      <h2 class="project-tagline">{{ page-tagline }}</h2>
+
+      {% if page.repository.is_project_page %}
+          <a href="{{ page.repository.repository_url }}" class="btn" target="_blank">Source Code</a>
+        {% if page.repository.show_downloads %}
+          <a href="{{ page.repository.zip_url }}" class="btn" target="_blank">Download .zip</a>
+          <a href="{{ page.repository.tar_url }}" class="btn" target="_blank">Download .tar.gz</a>
+        {% endif %}
+      {% endif %}
+      <!-- Post tagline -->
+      {% if page.layout == 'post' %}
+        <!-- <h2 class="project-date">
+        </h2> -->
+      {% endif %}
+      <!-- End: Post tagline -->
+    </section>
 
 
-</head>
+    <section class="main-content">
 
-<body class="{% if page.url == "/" %} homefirstpage {% endif %}">
+      {% include language-selector.html %}
 
-    <!-- Navbar -->
-    <nav id="MagicMenu" class="topnav navbar navbar-expand-lg navbar-light bg-white fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="{{ site.baseurl }}/index.html"><strong>{{site.name}}</strong></a>
-        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse" id="navbarColor02" style="">
-            <ul class="navbar-nav mr-auto d-flex align-items-center">
-               {% include menu-header.html %}
-            </ul>
-            <ul class="navbar-nav ml-auto d-flex align-items-center">
-                {% include search-lunr.html %}
-            </ul>
-        </div>
-    </div>
-    </nav>
+      {{ content }}
 
-    <!-- Search Results -->
-    <div id="lunrsearchresults">
-        <ul class="mb-0"></ul>
-    </div>
+      {% include footer.html %}
 
-    <!-- Content -->
-    <main role="main" class="site-content">
-        {{ content }}
-    </main>
+    </section>
 
+    <script type="text/javascript">
+      var menu = document.querySelector("nav.site-nav");
+      var checkbox = document.getElementById("nav-trigger");
 
-    <!-- Scripts: popper, bootstrap, theme, lunr -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+      // close menu if click outside menu
+      document.addEventListener("click", function(e) {
+        if (menu != e.target &&
+            ! isDescendant(menu, e.target)) {
+          checkbox.checked = false;
+        }
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+      }, false);
 
-    <script src="{{site.baseurl}}/assets/js/theme.js"></script>
+      function isDescendant(parent, child) {
+           var node = child.parentNode;
+           while (node != null) {
+               if (node == parent) {
+                   return true;
+               }
+               node = node.parentNode;
+           }
+           return false;
+      }
 
+    </script>
 
-    <!-- Footer -->
-    <footer class="bg-white border-top p-3 text-muted small">
-        <div class="container">
-        <div class="row align-items-center justify-content-between">
-            <div>
-                <span class="navbar-brand mr-2 mb-0"><strong>Mundana</strong></span>
-                <span>Copyright © <script>document.write(new Date().getFullYear())</script>.</span>
+<!-- here comments count script -->
 
-                <!--  Github Repo Star Btn-->
-                <a class="text-dark ml-1" target="_blank" href="https://github.com/wowthemesnet/mundana-theme-jekyll"><i class="fab fa-github"></i> Fork on Github</a>
-
-            </div>
-            <div>
-                Made with <a target="_blank" class="text-dark font-weight-bold" href="https://www.wowthemes.net/mundana-jekyll-theme/"> Mundana Jekyll Theme </a> by <a class="text-dark" target="_blank" href="https://www.wowthemes.net">WowThemes</a>.
-            </div>
-        </div>
-        </div>
-    </footer>
-
-    {% include tracking-footer.html %}
-
-</body>
-
+  </body>
 </html>
