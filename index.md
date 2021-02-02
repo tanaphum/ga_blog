@@ -2,14 +2,12 @@
 title: Mathematical and Economic MODelling (MAEMOD)
 subtitle: This is where we share our software, codes, data and information of our projects
 layout: page
-  images:
-    - link: https://via.placeholder.com/800x450
-      large_link: https://via.placeholder.com/1200x675
-      alt: The alt text for the image
-      description: |-
-        The image description can be written in **markdown** if required
-      ratio: is-16by9
+
 ---
+
+    <div>
+        {% include image-modal.html ratio="is-16by9" link="https://via.placeholder.com/400x225" alt="Example image" large_link="https://via.placeholder.com/1200x675" %}
+    </div>
 
 # Bulma Clean Theme demo website
 
