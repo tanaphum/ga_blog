@@ -1,9 +1,7 @@
 ---
 title: Mathematical and Economic MODelling (MAEMOD)
-subtitle: This is the demo site for Bulma Clean Theme
+subtitle: This is the site for Mathematical and Economic MODelling (MAEMOD)
 layout: page
-callouts: home_callouts
-show_sidebar: true
 ---
 
 # Bulma Clean Theme demo website
