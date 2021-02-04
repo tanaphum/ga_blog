@@ -1,6 +1,7 @@
 ---
 layout: post
 title: P. falciparum Dynamic models
+image: img/Moru.webp
 ---
 # A collection of the _P. falciparum_ Dynamic models
 
