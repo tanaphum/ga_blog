@@ -1,7 +1,7 @@
 ---
 layout: post
 title: post-doc post based in Oxford
-image: img/Moru.webp
+image: /img/Moru.webp
 ---
 # post-doc post based in Oxford: statistical/mathematical modeller to work on developing and evaluating novel adaptive trial designs for evaluating vaccines in infectious disease emergencies.
 
