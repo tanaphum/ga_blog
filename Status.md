@@ -1,10 +1,8 @@
 ---
-title: Page With Sidebar
-subtitle: A demo page with a sidebar
+title: Ongoing
 layout: page
 show_sidebar: false
 ---
 
-This is a demo page showing the sidebar.
-
-To show the sidebar set show_sidebar to true in the page's frontmatter.
+# Projects
+- Modelling optimal strategies to screen and treat chronic Hepatitis C Virus infections (Ongoing)
