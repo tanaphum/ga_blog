@@ -10,11 +10,11 @@ layout: default
     </div>
     {% for post in paginator.posts %}
     <div class="column is-12">
+        <a class="twitter-timeline" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a> 
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         {% include post-card.html %}
     </div>
     {% endfor %}
-    <a class="twitter-timeline" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a> 
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <div class="column is-12">
         {% include pagination.html %}
     </div>
