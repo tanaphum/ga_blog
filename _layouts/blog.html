@@ -9,10 +9,10 @@ layout: default
         {% include pagination.html %}
     </div>
     {% for post in paginator.posts %}
-    {% endfor %}
     <div class="column is-12">
-        {% include pagination.html %}
+        {% include post-card.html %}
     </div>
+    {% endfor %}
     <div class="column is-12">
         {% include subscribe.html %}
     </div>
