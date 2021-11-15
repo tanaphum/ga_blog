@@ -1,8 +1,11 @@
 ---
-title: Ongoing
+title: MAEMOD-RSE
 layout: page
 show_sidebar: false
 ---
 
-# Projects
-- Modelling optimal strategies to screen and treat chronic Hepatitis C Virus infections (Ongoing)
+# MAEMOD Research Software Engineering
+- Defining, scoping and costing software effort in grant proposals;
+- Delivering high-quality software to enable research outputs;
+- Training your group in software engineering best practice;
+- Helping you and your spin-out commercialise your research software.
