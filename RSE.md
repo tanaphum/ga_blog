@@ -1,5 +1,5 @@
 ---
-title: MAEMOD-RSE
+title: MAEMOD Research Software Engineering
 layout: page
 show_sidebar: false
 ---
